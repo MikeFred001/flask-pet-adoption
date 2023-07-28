@@ -31,8 +31,8 @@ toolbar = DebugToolbarExtension(app)
 @app.get('/')
 def display_pets():
     """Displays homepage listing all pets"""
-
-    return render_template("pet_list.html")
+    pets = Pet.query.order_by("name").all()
+    return render_template("pet_list.html", pets=pets)
 
 
 @app.route('/add', methods=["GET", "POST"])
@@ -60,7 +60,9 @@ def add_pet():
         db.session.commit()
 
         flash(f"Added {name} to Adoption List!")
-        return redirect('/add')
+        return redirect('/')
 
     else:
         return render_template("add_pet_form.html", form=form)
+
+

@@ -5,6 +5,11 @@
 
 {% block content %}
   <h1>Home</h1>
-
+<ul>
+  {% for pet in pets %}
+  <li> {{pet.name}} </li>
+  {% endfor %}
+</ul>
   <a class="btn btn-primary" href="/add">Add Pet</a>
+  
 {% endblock %}
