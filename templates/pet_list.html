@@ -5,11 +5,22 @@
 
 {% block content %}
   <h1>Home</h1>
-<ul>
-  {% for pet in pets %}
-  <li> {{pet.name}} </li>
-  {% endfor %}
-</ul>
+
+    {% for pet in pets %}
+      <div>
+        <img
+        class="img-fluid img-thumbnail"
+        style="width: 200px; height: auto"
+        src="{{ pet.photo_url }}"
+        alt="{{ pet.name }}">
+        <p><a href="/{{ pet.id }}">{{ pet.name }}</a></p>
+        {% if pet.available %}
+          <p>{{ pet.name }} is available!</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+
   <a class="btn btn-primary" href="/add">Add Pet</a>
-  
+
 {% endblock %}
